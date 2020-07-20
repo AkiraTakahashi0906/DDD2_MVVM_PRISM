@@ -88,6 +88,16 @@ namespace DDD.WPF.ViewModels
             }
         }
 
+        private bool _isSelected = false;
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set
+            {
+                SetProperty(ref _isSelected, value);
+            }
+        }
+
         public DelegateCommand LatestButton { get; }
 
         private void LatestButtonExecute()
@@ -96,6 +106,9 @@ namespace DDD.WPF.ViewModels
             {
                 throw new InputException("地域を選択してください");
             }
+
+            IsSelected = true;
+
             var entity = _weather.GetLatest(SelectedArea.AreaId);
             if (entity == null)
             {

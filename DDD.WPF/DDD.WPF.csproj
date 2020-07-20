@@ -62,6 +62,7 @@
     <Compile Include="ViewModels\WeatherListViewModel.cs" />
     <Compile Include="ViewModels\WeatherListViewModelWeather.cs" />
     <Compile Include="ViewModels\WeatherSaveViewModel.cs" />
+    <Compile Include="Views\Behaviors\FocusExtension.cs" />
     <Compile Include="Views\WeatherListView.xaml.cs">
       <DependentUpon>WeatherListView.xaml</DependentUpon>
     </Compile>
