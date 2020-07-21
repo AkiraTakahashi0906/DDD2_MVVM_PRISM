@@ -25,9 +25,18 @@
                 <Label Content="{Binding TemperatureText}" FontSize="20" Width="200"/>
             </StackPanel>
             <Button Content="直近値" FontSize="20" Margin="5" Command="{Binding LatestButton}"/>
+            <Button Content="TEST" FontSize="20" Margin="5" Command="{Binding TestButton}"/>
             <StackPanel>
-                <TextBox b:FocusExtension.IsFocused="{Binding IsSelected}" Margin="5"/>
-                <TextBox b:FocusExtension.IsFocused="{Binding IsSelected}" Margin="5"/>
+                <TextBox b:FocusExtension.IsFocused="{Binding IsSelected}" Margin="5">
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding TestButton}" Key="Return" />
+                    </TextBox.InputBindings>
+                </TextBox>
+                <TextBox b:FocusExtension.IsFocused="{Binding IsSelected2}" Margin="5">
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding TestButton2}" Key="Return" />
+                    </TextBox.InputBindings>
+                </TextBox>
             </StackPanel>
         </StackPanel>
     </Grid>

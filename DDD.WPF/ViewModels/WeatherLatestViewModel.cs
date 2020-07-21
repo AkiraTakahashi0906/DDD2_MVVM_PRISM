@@ -35,7 +35,13 @@ namespace DDD.WPF.ViewModels
             }
 
             LatestButton = new DelegateCommand(LatestButtonExecute);
+            TestButton = new DelegateCommand(TestButtonExecute);
+            TestButton2 = new DelegateCommand(TestButtonExecute2);
         }
+
+        public DelegateCommand LatestButton { get; }
+        public DelegateCommand TestButton { get; }
+        public DelegateCommand TestButton2 { get; }
 
         //コンボボックスにバインドするやつ
         private ObservableCollection<AreaEntity> _areas = new ObservableCollection<AreaEntity>();
@@ -98,7 +104,27 @@ namespace DDD.WPF.ViewModels
             }
         }
 
-        public DelegateCommand LatestButton { get; }
+        private bool _isSelected2 = false;
+        public bool IsSelected2
+        {
+            get { return _isSelected2; }
+            set
+            {
+                SetProperty(ref _isSelected2, value);
+            }
+        }
+
+        private void TestButtonExecute()
+        {
+            IsSelected2 = false;
+            IsSelected2 = true;
+        }
+
+        private void TestButtonExecute2()
+        {
+            IsSelected = false;
+            IsSelected = true;
+        }
 
         private void LatestButtonExecute()
         {
@@ -106,8 +132,6 @@ namespace DDD.WPF.ViewModels
             {
                 throw new InputException("地域を選択してください");
             }
-
-            IsSelected = true;
 
             var entity = _weather.GetLatest(SelectedArea.AreaId);
             if (entity == null)
@@ -122,6 +146,9 @@ namespace DDD.WPF.ViewModels
                 ConditionText = entity.Condition.DisplayValue;
                 TemperatureText = entity.Temperature.DisplayValueWithUnitSpace;
             }
+
+            IsSelected = false;
+            IsSelected = true;
         }
     }
 }
