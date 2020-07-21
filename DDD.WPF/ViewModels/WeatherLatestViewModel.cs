@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 
 namespace DDD.WPF.ViewModels
 {
@@ -42,6 +43,26 @@ namespace DDD.WPF.ViewModels
         public DelegateCommand LatestButton { get; }
         public DelegateCommand TestButton { get; }
         public DelegateCommand TestButton2 { get; }
+
+        private string _bindText = string.Empty;
+        public string BindText
+        {
+            get { return _bindText; }
+            set
+            {
+                SetProperty(ref _bindText, value);
+            }
+        }
+
+        private string _bindText2 = string.Empty;
+        public string BindText2
+        {
+            get { return _bindText2; }
+            set
+            {
+                SetProperty(ref _bindText2, value);
+            }
+        }
 
         //コンボボックスにバインドするやつ
         private ObservableCollection<AreaEntity> _areas = new ObservableCollection<AreaEntity>();
@@ -116,12 +137,16 @@ namespace DDD.WPF.ViewModels
 
         private void TestButtonExecute()
         {
+            MessageBox.Show(BindText);
+            BindText2 = "";
             IsSelected2 = false;
             IsSelected2 = true;
         }
 
         private void TestButtonExecute2()
         {
+            MessageBox.Show(BindText2);
+            BindText = "";
             IsSelected = false;
             IsSelected = true;
         }
